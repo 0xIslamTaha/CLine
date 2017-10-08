@@ -17,9 +17,9 @@ def GetTestiousClines():
 
     yesterday = datetime.date.today() - datetime.timedelta(days=1)
     regExpr = re.compile('([CN]:.*?)#.*\n<br>')
-    for url in ["http://www.testious.com/free-cccam-servers/" + datetime.date.today().strftime("%Y-%m-%d"),
-                "http://www.testious.com/free-cccam-servers/" + yesterday.strftime("%Y-%m-%d")]:
-        htmlCode = session.get(url=url).text
+    for url in ["https://www.testious.com/free-cccam-servers/" + datetime.date.today().strftime("%Y-%m-%d"),
+                "https://www.testious.com/free-cccam-servers/" + yesterday.strftime("%Y-%m-%d")]:
+        htmlCode = session.get(url=url, verify=False).text
         matches = regExpr.findall(htmlCode)
         for match in matches:
             clines.append(str(match))
